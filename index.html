@@ -31,8 +31,14 @@ body.light {
   --amber:#8a6200; --amber-bg:rgba(138,98,0,0.09);
 }
 body.light .app-title-accent { color:#4f8fff; }
-body.light .icon-btn { width:44px; height:44px; min-width:44px; background:transparent; border:none; outline:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; flex-grow:0; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; padding:0; border-radius:8px; overflow:hidden; }
-.icon-btn svg, .icon-svg { width:32px; height:32px; min-width:32px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+body.light .icon-btn { width:44px; height:44px; min-width:44px; background:transparent; border:none; outline:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; flex-grow:0; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; padding:0; border-radius:8px; position:relative; }
+.icon-btn svg { width:32px; height:32px; position:absolute; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; transition:opacity 0.15s; }
+#icon-clock, #icon-sun { opacity:0; pointer-events:none; }
+#icon-hourglass, #icon-moon { opacity:1; }
+body.show-clock #icon-clock { opacity:1; }
+body.show-clock #icon-hourglass { opacity:0; }
+body.light #icon-sun { opacity:1; }
+body.light #icon-moon { opacity:0; }
 body.light .calc-btn { background:#142850; }
 html { background:var(--bg); overflow-x:hidden; }
 body { min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; padding-bottom:60px; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
@@ -152,8 +158,14 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
   <div class="nav-top">
     <span class="app-title">TCO<span class="app-title-accent">Buddy</span></span>
     <span class="spacer"></span>
-    <button class="icon-btn" id="switch-btn" onclick="switchTab()"><svg viewBox="0 0 24 24"><path d="M7 2h10v6l-5 4 5 4v6H7v-6l5-4-5-4V2z"/></svg></button>
-    <button class="icon-btn" id="theme-btn" onclick="toggleTheme()"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+    <button class="icon-btn" id="switch-btn" onclick="switchTab()">
+      <svg id="icon-hourglass" viewBox="0 0 24 24"><path d="M7 2h10v6l-5 4 5 4v6H7v-6l5-4-5-4V2z"/></svg>
+      <svg id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+    </button>
+    <button class="icon-btn" id="theme-btn" onclick="toggleTheme()">
+      <svg id="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
   </div>
 </div>
 
@@ -265,8 +277,8 @@ var _sunSVG='<svg viewBox="0 0 24 24" width="32" height="32" class="icon-svg"><c
 var _theme='dark';
 function setTheme(t){
   _theme=t;
-  document.body.className=t==='light'?'light':'';
-  document.getElementById('theme-btn').innerHTML=t==='light'?_sunSVG:_moonSVG;
+  var cls=document.body.className.replace(/\blight\b/,'').trim();
+  document.body.className=t==='light'?cls+' light':cls;
   try{localStorage.setItem('dc-theme',t);}catch(e){}
 }
 function toggleTheme(){setTheme(_theme==='dark'?'light':'dark');}
@@ -281,7 +293,8 @@ function switchTab(){
   _currentTab=_currentTab==='delay'?'timestamps':'delay';
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('tab-'+_currentTab).classList.add('active');
-  document.getElementById('switch-btn').innerHTML=_currentTab==='delay'?_hourglassSVG:_clockSVG;
+  if(_currentTab==='timestamps'){document.body.classList.add('show-clock');}
+  else{document.body.classList.remove('show-clock');}
 }
 
 function toMins(str){var m=str.trim().match(/^(\d{1,2}):(\d{2})$/);if(!m)return null;var h=parseInt(m[1]),mn=parseInt(m[2]);if(h>23||mn>59)return null;return h*60+mn;}
