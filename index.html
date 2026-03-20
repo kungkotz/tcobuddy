@@ -30,7 +30,8 @@ body.light {
   --amber:#8a6200; --amber-bg:rgba(138,98,0,0.09);
 }
 body.light .app-title-accent { color:#4f8fff; }
-body.light .switch-btn { color:#4f8fff; }
+body.light .icon-btn { width:44px; height:44px; background:transparent; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; padding:0; }
+.icon-btn svg { width:32px; height:32px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
 body.light .calc-btn { background:#142850; }
 html { background:var(--bg); overflow-x:hidden; }
 body { min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; padding-bottom:60px; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
@@ -150,8 +151,8 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
   <div class="nav-top">
     <span class="app-title">TCO<span class="app-title-accent">Buddy</span></span>
     <span class="spacer"></span>
-    <button class="switch-btn" id="switch-btn" onclick="switchTab()">Switch to Timestamps</button>
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">&#9790;</button>
+    <button class="icon-btn" id="switch-btn" onclick="switchTab()"><svg viewBox="0 0 24 24"><path d="M7 2h10v6l-5 4 5 4v6H7v-6l5-4-5-4V2z"/></svg></button>
+    <button class="icon-btn" id="theme-btn" onclick="toggleTheme()"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </div>
 </div>
 
@@ -260,7 +261,7 @@ var _theme='dark';
 function setTheme(t){
   _theme=t;
   document.body.className=t==='light'?'light':'';
-  document.getElementById('theme-btn').innerHTML=t==='light'?'&#9728;':'&#9790;';
+  document.getElementById('theme-btn').innerHTML=t==='light'?_sunSVG:_moonSVG;
   try{localStorage.setItem('dc-theme',t);}catch(e){}
 }
 function toggleTheme(){setTheme(_theme==='dark'?'light':'dark');}
@@ -271,11 +272,15 @@ function toggleTheme(){setTheme(_theme==='dark'?'light':'dark');}
 })();
 
 var _currentTab='delay';
+var _hourglassSVG='<svg viewBox="0 0 24 24" width="32" height="32" style="stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"><path d="M7 2h10v6l-5 4 5 4v6H7v-6l5-4-5-4V2z"/></svg>';
+var _clockSVG='<svg viewBox="0 0 24 24" width="32" height="32" style="stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>';
+var _moonSVG='<svg viewBox="0 0 24 24" width="32" height="32" style="stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+var _sunSVG='<svg viewBox="0 0 24 24" width="32" height="32" style="stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
 function switchTab(){
   _currentTab=_currentTab==='delay'?'timestamps':'delay';
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('tab-'+_currentTab).classList.add('active');
-  document.getElementById('switch-btn').textContent=_currentTab==='delay'?'Switch to Timestamps':'Switch to Delay Calculator';
+  document.getElementById('switch-btn').innerHTML=_currentTab==='delay'?_hourglassSVG:_clockSVG;
 }
 
 function toMins(str){var m=str.trim().match(/^(\d{1,2}):(\d{2})$/);if(!m)return null;var h=parseInt(m[1]),mn=parseInt(m[2]);if(h>23||mn>59)return null;return h*60+mn;}
