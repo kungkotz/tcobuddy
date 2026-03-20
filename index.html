@@ -30,14 +30,17 @@ body.light {
   --amber:#8a6200; --amber-bg:rgba(138,98,0,0.09);
 }
 body.light .app-title-accent { color:#4f8fff; }
-body.light .switch-btn { color:#4f8fff; }
+body.light .icon-wrap svg { stroke:#4f8fff; }
+body.light .calc-btn { background:#142850; }
+body.light .icon-wrap { position:relative; width:32px; height:32px; flex-shrink:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }
+.icon-wrap svg { position:absolute; top:0; left:0; width:32px; height:32px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; transition:opacity 0.2s; }
 body.light .calc-btn { background:#142850; }
 html { background:var(--bg); overflow-x:hidden; }
 body { min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; padding-bottom:60px; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
 
 
 .nav { max-width:480px; margin:0 auto; padding:14px 16px 0; }
-.nav-top { display:flex; align-items:center; gap:8px; }
+.nav-top { display:flex; align-items:center; gap:16px; }
 .app-title { font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text); flex-shrink:1; min-width:0; }
 .app-title-accent { color:var(--accent); }
 .spacer { flex:1; }
@@ -150,8 +153,14 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
   <div class="nav-top">
     <span class="app-title">TCO<span class="app-title-accent">Buddy</span></span>
     <span class="spacer"></span>
-    <button class="switch-btn" id="switch-btn" onclick="switchTab()">Switch to Timestamps</button>
-    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">&#9790;</button>
+    <div class="icon-wrap" id="switch-btn" onclick="switchTab()">
+      <svg id="icon-hourglass" viewBox="0 0 24 24"><path d="M7 2h10v6l-5 4 5 4v6H7v-6l5-4-5-4V2z"/></svg>
+      <svg id="icon-clock" style="opacity:0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+    </div>
+    <div class="icon-wrap" id="theme-btn" onclick="toggleTheme()">
+      <svg id="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg id="icon-sun" style="opacity:0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+    </div>
   </div>
 </div>
 
@@ -256,11 +265,16 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 
 <script>
 
+
+
+
+
 var _theme='dark';
 function setTheme(t){
   _theme=t;
   document.body.className=t==='light'?'light':'';
-  document.getElementById('theme-btn').innerHTML=t==='light'?'&#9728;':'&#9790;';
+  document.getElementById('icon-moon').style.opacity=t==='light'?'0':'1';
+  document.getElementById('icon-sun').style.opacity=t==='light'?'1':'0';
   try{localStorage.setItem('dc-theme',t);}catch(e){}
 }
 function toggleTheme(){setTheme(_theme==='dark'?'light':'dark');}
@@ -275,7 +289,8 @@ function switchTab(){
   _currentTab=_currentTab==='delay'?'timestamps':'delay';
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('tab-'+_currentTab).classList.add('active');
-  document.getElementById('switch-btn').textContent=_currentTab==='delay'?'Switch to Timestamps':'Switch to Delay Calculator';
+  document.getElementById('icon-hourglass').style.opacity=_currentTab==='delay'?'1':'0';
+  document.getElementById('icon-clock').style.opacity=_currentTab==='timestamps'?'1':'0';
 }
 
 function toMins(str){var m=str.trim().match(/^(\d{1,2}):(\d{2})$/);if(!m)return null;var h=parseInt(m[1]),mn=parseInt(m[2]);if(h>23||mn>59)return null;return h*60+mn;}
