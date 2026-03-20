@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@500;700&display=swap" rel="stylesheet" />
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
   --bg:#0a0a0f; --surface:#13131a; --surface2:#1c1c27;
   --border:rgba(255,255,255,0.09); --border-hi:rgba(255,255,255,0.22);
@@ -19,7 +18,6 @@
   --amber:#f5a623; --amber-bg:rgba(245,166,35,0.12);
   --radius:12px; --mono:'DM Mono',monospace; --sans:'Syne',sans-serif;
 }
-
 body.light {
   --bg:#f0f3f1; --surface:#ffffff; --surface2:#e8edea;
   --border:rgba(20,40,80,0.1); --border-hi:rgba(20,40,80,0.3);
@@ -30,33 +28,26 @@ body.light {
   --amber:#8a6200; --amber-bg:rgba(138,98,0,0.09);
 }
 body.light .app-title-accent { color:#4f8fff; }
-body.light .icon-wrap svg { stroke:#4f8fff; }
-body.light .calc-btn { background:#142850; }
-body.light .icon-wrap { position:relative; width:32px; height:32px; flex-shrink:0; cursor:pointer; -webkit-tap-highlight-color:transparent; }
-.icon-wrap svg { position:absolute; top:0; left:0; width:32px; height:32px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; transition:opacity 0.2s; }
+body.light .switch-btn { color:#4f8fff; }
 body.light .calc-btn { background:#142850; }
 html { background:var(--bg); overflow-x:hidden; }
 body { min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; padding-bottom:60px; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
 
-
 .nav { max-width:480px; margin:0 auto; padding:14px 16px 0; }
-.nav-top { display:flex; align-items:center; gap:16px; }
+.nav-top { display:flex; align-items:center; gap:8px; }
 .app-title { font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text); flex-shrink:1; min-width:0; }
 .app-title-accent { color:var(--accent); }
 .spacer { flex:1; }
-/* switch + theme btn — accent color always, brighter on hover for pointer devices */
-.switch-btn { height:32px; background:transparent; border:none; font-family:var(--sans); font-size:11px; font-weight:700; color:var(--accent); cursor:pointer; padding:0 8px; white-space:nowrap; flex-shrink:1; min-width:0; border-radius:6px; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
+.switch-btn { height:32px; background:transparent; border:none; font-family:var(--sans); font-size:11px; font-weight:700; color:var(--accent); cursor:pointer; padding:0 8px; white-space:nowrap; flex-shrink:0; border-radius:6px; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
 @media(hover:hover){ .switch-btn:hover { opacity:0.6; } }
-.theme-btn { width:38px; height:38px; background:transparent; border:none; font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--accent); flex-shrink:0; border-radius:8px; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
-@media(hover:hover){ .theme-btn:hover { opacity:0.6; } }
+.theme-btn { width:32px; height:32px; background:transparent; border:none; outline:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; padding:0; -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; }
+.theme-btn svg { width:22px; height:22px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
 
 .page { max-width:480px; margin:0 auto; padding:20px 20px 0; }
 .tab-panel { display:none; }
 .tab-panel.active { display:block; }
 
-
 .section-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); margin:0 0 8px 2px; }
-
 .field-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px; }
 .field { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px 10px; transition:border-color 0.15s,background 0.15s; cursor:text; }
 .field:focus-within { border-color:var(--border-hi); background:var(--surface2); }
@@ -65,7 +56,6 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .field-code { font-size:14px; font-weight:700; color:var(--text); display:block; margin-bottom:6px; }
 .field input { width:100%; background:transparent; border:none; outline:none; font-family:var(--mono); font-size:20px; font-weight:500; color:var(--text); caret-color:var(--accent); padding:0; line-height:1.2; }
 .field input::placeholder { color:var(--hint); font-size:20px; font-weight:500; }
-
 .mtt-row { margin-bottom:24px; }
 .field-wide { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px 10px; transition:border-color 0.15s,background 0.15s; cursor:text; display:flex; align-items:center; gap:12px; }
 .field-wide:focus-within { border-color:var(--border-hi); background:var(--surface2); }
@@ -73,12 +63,10 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .field-wide-left .field-code { margin-bottom:0; }
 .field-wide-right input { background:transparent; border:none; outline:none; font-family:var(--mono); font-size:22px; font-weight:500; color:var(--text); caret-color:var(--accent); width:64px; text-align:right; padding:0; }
 .field-wide-right input::placeholder { color:var(--hint); font-size:22px; font-weight:500; }
-
 .calc-btn { width:100%; height:52px; background:var(--accent); border:none; border-radius:var(--radius); font-family:var(--sans); font-size:15px; font-weight:700; color:#fff; cursor:pointer; letter-spacing:0.01em; display:flex; align-items:center; justify-content:center; gap:8px; transition:opacity 0.15s,transform 0.1s; margin-bottom:20px; }
 .calc-btn:hover { opacity:0.9; }
 .calc-btn:active { opacity:0.8; transform:scale(0.99); }
 .calc-btn svg { width:17px; height:17px; stroke:#fff; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
-
 .error-box { background:var(--danger-bg); border:1px solid rgba(255,92,92,0.2); border-radius:var(--radius); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--danger); margin-bottom:16px; display:none; }
 .result-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:none; margin-bottom:12px; animation:up 0.22s cubic-bezier(0.16,1,0.3,1); }
 @keyframes up { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
@@ -102,7 +90,6 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .badge-no  { background:var(--success-bg); color:var(--success); border:1px solid rgba(62,207,142,0.2); }
 .clear-btn-small { width:100%; height:44px; background:transparent; border:1px solid var(--border); border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; transition:border-color 0.15s,color 0.15s; display:none; }
 .clear-btn-small:hover { border-color:var(--border-hi); color:var(--text); }
-
 .pair-group { margin-bottom:20px; }
 .pair-divider { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
 .pair-divider-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); white-space:nowrap; }
@@ -111,8 +98,7 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .ts-stamp-btn { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; text-align:center; transition:border-color 0.15s,background 0.15s; display:flex; align-items:center; overflow:hidden; width:100%; }
 .ts-stamp-btn:hover { border-color:var(--border-hi); }
 .ts-stamp-btn.stamped { border-color:rgba(79,143,255,0.3); background:var(--accent-bg); }
-.ts-stamp-btn:active { transform:scale(0.99); }
-.ts-btn-main { flex:1; padding:14px 10px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:background 0.15s; }
+.ts-btn-main { flex:1; padding:14px 10px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
 .ts-btn-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); line-height:1.5; display:block; white-space:normal; word-break:break-word; }
 .ts-btn-time { font-family:var(--mono); font-size:18px; font-weight:500; color:var(--accent); line-height:1.3; margin-top:3px; display:none; }
 .ts-btn-time.visible { display:block; }
@@ -128,7 +114,6 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .pair-footer-text { font-family:var(--mono); font-size:12px; color:var(--amber); background:var(--amber-bg); border:1px solid rgba(245,166,35,0.2); border-radius:20px; padding:2px 10px; }
 .clear-all-ts { width:100%; height:44px; background:transparent; border:1px solid var(--border); border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; transition:border-color 0.15s,color 0.15s; margin-top:8px; }
 .clear-all-ts:hover { border-color:var(--danger); color:var(--danger); }
-
 .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.18s; }
 .modal-overlay.open { opacity:1; pointer-events:all; }
 .modal { background:var(--surface2); border:1px solid var(--border-hi); border-radius:16px; padding:24px 20px 20px; width:100%; max-width:320px; transform:translateY(16px); transition:transform 0.2s cubic-bezier(0.16,1,0.3,1); }
@@ -153,19 +138,15 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
   <div class="nav-top">
     <span class="app-title">TCO<span class="app-title-accent">Buddy</span></span>
     <span class="spacer"></span>
-    <div class="icon-wrap" id="switch-btn" onclick="switchTab()">
-      <svg id="icon-hourglass" viewBox="0 0 24 24"><path d="M7 2h10v6l-5 4 5 4v6H7v-6l5-4-5-4V2z"/></svg>
-      <svg id="icon-clock" style="opacity:0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-    </div>
-    <div class="icon-wrap" id="theme-btn" onclick="toggleTheme()">
+    <button class="switch-btn" id="switch-btn" onclick="switchTab()">Switch to Timestamps</button>
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">
       <svg id="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg id="icon-sun" style="opacity:0" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
-    </div>
+      <svg id="icon-sun" style="display:none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+    </button>
   </div>
 </div>
 
 <div class="page">
-
   <div class="tab-panel active" id="tab-delay">
     <div style="margin-top:20px;"></div>
     <div class="section-label">Arrival</div>
@@ -214,35 +195,30 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 
   <div class="tab-panel" id="tab-timestamps">
     <div style="margin-top:20px;"></div>
-
     <div class="pair-group">
       <div class="pair-divider"><span class="pair-divider-label">Deboarding</span><div class="pair-divider-line"></div></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-deboard-start"><span class="ts-btn-main" onclick="handlePress('deboard-start')"><span class="ts-btn-label">Deboarding Started</span><span class="ts-btn-time" id="time-deboard-start"></span><span class="ts-btn-hint" id="hint-deboard-start">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('deboard-start')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-deboard-end"><span class="ts-btn-main" onclick="handlePress('deboard-end')"><span class="ts-btn-label">Deboarding Ended</span><span class="ts-btn-time" id="time-deboard-end"></span><span class="ts-btn-hint" id="hint-deboard-end">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('deboard-end')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="pair-footer" id="dur-deboarding"><span class="pair-footer-text" id="dur-text-deboarding"></span></div>
     </div>
-
     <div class="pair-group">
       <div class="pair-divider"><span class="pair-divider-label">Fueling</span><div class="pair-divider-line"></div></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-fuel-start"><span class="ts-btn-main" onclick="handlePress('fuel-start')"><span class="ts-btn-label">Fueling Started</span><span class="ts-btn-time" id="time-fuel-start"></span><span class="ts-btn-hint" id="hint-fuel-start">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('fuel-start')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-fuel-end"><span class="ts-btn-main" onclick="handlePress('fuel-end')"><span class="ts-btn-label">Fueling Ended</span><span class="ts-btn-time" id="time-fuel-end"></span><span class="ts-btn-hint" id="hint-fuel-end">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('fuel-end')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="pair-footer" id="dur-fueling"><span class="pair-footer-text" id="dur-text-fueling"></span></div>
     </div>
-
     <div class="pair-group">
       <div class="pair-divider"><span class="pair-divider-label">Cleaning</span><div class="pair-divider-line"></div></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-clean-start"><span class="ts-btn-main" onclick="handlePress('clean-start')"><span class="ts-btn-label">Cleaning Started</span><span class="ts-btn-time" id="time-clean-start"></span><span class="ts-btn-hint" id="hint-clean-start">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('clean-start')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-clean-end"><span class="ts-btn-main" onclick="handlePress('clean-end')"><span class="ts-btn-label">Cleaning Ended</span><span class="ts-btn-time" id="time-clean-end"></span><span class="ts-btn-hint" id="hint-clean-end">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('clean-end')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="pair-footer" id="dur-cleaning"><span class="pair-footer-text" id="dur-text-cleaning"></span></div>
     </div>
-
     <div class="pair-group">
       <div class="pair-divider"><span class="pair-divider-label">Boarding</span><div class="pair-divider-line"></div></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-pax-first"><span class="ts-btn-main" onclick="handlePress('pax-first')"><span class="ts-btn-label">First Pax In</span><span class="ts-btn-time" id="time-pax-first"></span><span class="ts-btn-hint" id="hint-pax-first">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('pax-first')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-pax-last"><span class="ts-btn-main" onclick="handlePress('pax-last')"><span class="ts-btn-label">Last Pax In</span><span class="ts-btn-time" id="time-pax-last"></span><span class="ts-btn-hint" id="hint-pax-last">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('pax-last')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="pair-footer" id="dur-boarding"><span class="pair-footer-text" id="dur-text-boarding"></span></div>
     </div>
-
     <button class="clear-all-ts" onclick="clearAllStamps()">Clear all timestamps</button>
   </div>
 </div>
@@ -264,17 +240,12 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 </div>
 
 <script>
-
-
-
-
-
 var _theme='dark';
 function setTheme(t){
   _theme=t;
   document.body.className=t==='light'?'light':'';
-  document.getElementById('icon-moon').style.opacity=t==='light'?'0':'1';
-  document.getElementById('icon-sun').style.opacity=t==='light'?'1':'0';
+  document.getElementById('icon-moon').style.display=t==='light'?'none':'block';
+  document.getElementById('icon-sun').style.display=t==='light'?'block':'none';
   try{localStorage.setItem('dc-theme',t);}catch(e){}
 }
 function toggleTheme(){setTheme(_theme==='dark'?'light':'dark');}
@@ -289,15 +260,13 @@ function switchTab(){
   _currentTab=_currentTab==='delay'?'timestamps':'delay';
   document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('tab-'+_currentTab).classList.add('active');
-  document.getElementById('icon-hourglass').style.opacity=_currentTab==='delay'?'1':'0';
-  document.getElementById('icon-clock').style.opacity=_currentTab==='timestamps'?'1':'0';
+  document.getElementById('switch-btn').textContent=_currentTab==='delay'?'Switch to Timestamps':'Switch to Delay Calculator';
 }
 
 function toMins(str){var m=str.trim().match(/^(\d{1,2}):(\d{2})$/);if(!m)return null;var h=parseInt(m[1]),mn=parseInt(m[2]);if(h>23||mn>59)return null;return h*60+mn;}
 function fmt(mins){var a=Math.abs(mins),h=Math.floor(a/60),m=a%60;if(h===0)return m+' min';return h+'h '+(m?m+'min':'');}
 function fmtT(mins){var w=((mins%1440)+1440)%1440;return String(Math.floor(w/60)).padStart(2,'0')+':'+String(w%60).padStart(2,'0');}
 function resolve(t,ref){return [t-1440,t,t+1440].reduce(function(b,c){return Math.abs(c-ref)<Math.abs(b-ref)?c:b;});}
-
 var FIELD_ORDER=['sibt','aibt','sobt','aobt','mtt'];
 function autoColon(el){
   el.addEventListener('input',function(){
@@ -308,11 +277,8 @@ function autoColon(el){
       var parts=v.match(/^(\d{2}):(\d{2})$/);
       var valid=parts&&parseInt(parts[1])<=23&&parseInt(parts[2])<=59;
       var fe=this.closest('.field'),es=fe?fe.querySelector('.field-inline-err'):null;
-      if(valid){
-        if(es)es.style.display='none';fe&&fe.classList.remove('field-invalid');
-        var idx=FIELD_ORDER.indexOf(this.id);
-        if(idx!==-1&&idx<FIELD_ORDER.length-1){var next=document.getElementById(FIELD_ORDER[idx+1]);if(next){next.focus();next.select();}}
-      }else{if(es)es.style.display='block';fe&&fe.classList.add('field-invalid');}
+      if(valid){if(es)es.style.display='none';fe&&fe.classList.remove('field-invalid');var idx=FIELD_ORDER.indexOf(this.id);if(idx!==-1&&idx<FIELD_ORDER.length-1){var next=document.getElementById(FIELD_ORDER[idx+1]);if(next){next.focus();next.select();}}}
+      else{if(es)es.style.display='block';fe&&fe.classList.add('field-invalid');}
     }else{var fe2=this.closest('.field'),es2=fe2?fe2.querySelector('.field-inline-err'):null;if(es2)es2.style.display='none';fe2&&fe2.classList.remove('field-invalid');}
   });
   el.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();calculate();}});
@@ -321,7 +287,6 @@ function autoColon(el){
 var mttEl=document.getElementById('mtt');
 mttEl.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'');});
 mttEl.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();calculate();}});
-
 function calculate(){
   var errEl=document.getElementById('error'),resEl=document.getElementById('result'),clrBtn=document.getElementById('clear-btn');
   errEl.style.display='none';resEl.style.display='none';clrBtn.style.display='none';
@@ -332,9 +297,8 @@ function calculate(){
   var sobt=sobtV,aobt=resolve(aobtV,sobt),sibt=resolve(sibtV,sobt-mtt),aibt=resolve(aibtV,sibt);
   var totalDelay=aobt-sobt,earliestPush=aibt+mtt,code93=Math.max(0,earliestPush-sobt),remaining=Math.max(0,totalDelay-code93);
   var html='';
-  if(totalDelay<=0){
-    html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value ontime">On time</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &middot; AOBT '+fmtT(aobt)+'</div></div>';
-  }else{
+  if(totalDelay<=0){html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value ontime">On time</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &middot; AOBT '+fmtT(aobt)+'</div></div>';}
+  else{
     html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value delay">'+fmt(totalDelay)+'</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &rarr; AOBT '+fmtT(aobt)+'</div></div><div class="result-section">Breakdown</div>';
     html+=code93>0?'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-yes">YES</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(earliestPush)+'<br>'+fmt(code93)+' past SOBT '+fmtT(sobt)+'</div></div><div class="result-row-value accent">'+fmt(code93)+'</div></div>':'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-no">NO</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(earliestPush)+'<br>did not push past SOBT '+fmtT(sobt)+'</div></div><div class="result-row-value success">0 min</div></div>';
     html+=remaining>0?'<div class="result-row"><div><div class="result-row-title">Remaining delay</div><div class="result-row-note">Assign your own delay code</div></div><div class="result-row-value danger">'+fmt(remaining)+'</div></div>':'<div class="result-row"><div><div class="result-row-title">Remaining delay</div><div class="result-row-note">Fully covered by code 93</div></div><div class="result-row-value success">0 min</div></div>';
@@ -342,12 +306,7 @@ function calculate(){
   resEl.innerHTML=html;resEl.style.display='block';clrBtn.style.display='block';
   setTimeout(function(){resEl.scrollIntoView({behavior:'smooth',block:'nearest'});},40);
 }
-function clearDelay(){
-  ['sibt','aibt','sobt','aobt','mtt'].forEach(function(id){document.getElementById(id).value='';});
-  document.getElementById('error').style.display='none';
-  document.getElementById('result').style.display='none';
-  document.getElementById('clear-btn').style.display='none';
-}
+function clearDelay(){['sibt','aibt','sobt','aobt','mtt'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('error').style.display='none';document.getElementById('result').style.display='none';document.getElementById('clear-btn').style.display='none';}
 
 var PAIRS={'deboard-start':{pair:'deboard-end',group:'deboarding'},'deboard-end':{pair:'deboard-start',group:'deboarding'},'fuel-start':{pair:'fuel-end',group:'fueling'},'fuel-end':{pair:'fuel-start',group:'fueling'},'clean-start':{pair:'clean-end',group:'cleaning'},'clean-end':{pair:'clean-start',group:'cleaning'},'pax-first':{pair:'pax-last',group:'boarding'},'pax-last':{pair:'pax-first',group:'boarding'}};
 var LABELS={'deboard-start':'Deboarding Started','deboard-end':'Deboarding Ended','fuel-start':'Fueling Started','fuel-end':'Fueling Ended','clean-start':'Cleaning Started','clean-end':'Cleaning Ended','pax-first':'First Pax In','pax-last':'Last Pax In'};
@@ -356,18 +315,8 @@ function loadStamps(){try{return JSON.parse(sessionStorage.getItem(STORAGE_KEY))
 function saveStamps(d){try{sessionStorage.setItem(STORAGE_KEY,JSON.stringify(d));}catch(e){}}
 function nowStr(){var d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
 function renderAll(){var data=loadStamps();Object.keys(PAIRS).forEach(function(id){renderOne(id,data[id]||null);});['deboarding','fueling','cleaning','boarding'].forEach(function(g){updateDuration(g);});}
-function renderOne(id,timeStr){
-  var btn=document.getElementById('btn-'+id),timeEl=document.getElementById('time-'+id),hintEl=document.getElementById('hint-'+id);
-  if(timeStr){timeEl.textContent=timeStr;timeEl.classList.add('visible');hintEl.classList.add('visible');btn.classList.add('stamped');}
-  else{timeEl.textContent='';timeEl.classList.remove('visible');hintEl.classList.remove('visible');btn.classList.remove('stamped');}
-}
-function updateDuration(group){
-  var keys=Object.keys(PAIRS).filter(function(k){return PAIRS[k].group===group;});
-  var data=loadStamps(),t0=data[keys[0]],t1=data[keys[1]];
-  var footerEl=document.getElementById('dur-'+group),textEl=document.getElementById('dur-text-'+group);
-  if(t0&&t1){var m0=toMins(t0),m1=toMins(t1);if(m0!==null&&m1!==null){var diff=m1>=m0?m1-m0:1440-(m0-m1);textEl.textContent=group.charAt(0).toUpperCase()+group.slice(1)+' took '+diff+' min';footerEl.classList.add('visible');return;}}
-  if(footerEl)footerEl.classList.remove('visible');
-}
+function renderOne(id,timeStr){var btn=document.getElementById('btn-'+id),timeEl=document.getElementById('time-'+id),hintEl=document.getElementById('hint-'+id);if(timeStr){timeEl.textContent=timeStr;timeEl.classList.add('visible');hintEl.classList.add('visible');btn.classList.add('stamped');}else{timeEl.textContent='';timeEl.classList.remove('visible');hintEl.classList.remove('visible');btn.classList.remove('stamped');}}
+function updateDuration(group){var keys=Object.keys(PAIRS).filter(function(k){return PAIRS[k].group===group;});var data=loadStamps(),t0=data[keys[0]],t1=data[keys[1]];var footerEl=document.getElementById('dur-'+group),textEl=document.getElementById('dur-text-'+group);if(t0&&t1){var m0=toMins(t0),m1=toMins(t1);if(m0!==null&&m1!==null){var diff=m1>=m0?m1-m0:1440-(m0-m1);textEl.textContent=group.charAt(0).toUpperCase()+group.slice(1)+' took '+diff+' min';footerEl.classList.add('visible');return;}}if(footerEl)footerEl.classList.remove('visible');}
 function handlePress(id){var data=loadStamps();if(data[id]){openModal(id);}else{data[id]=nowStr();saveStamps(data);renderOne(id,data[id]);updateDuration(PAIRS[id].group);}}
 function clearStamp(id){var data=loadStamps();delete data[id];saveStamps(data);renderOne(id,null);updateDuration(PAIRS[id].group);}
 function clearAllStamps(){try{sessionStorage.removeItem(STORAGE_KEY);}catch(e){}renderAll();}
