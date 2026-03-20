@@ -32,17 +32,17 @@ body.light {
 body.light .app-title-accent { color:#4f8fff; }
 body.light .switch-btn { color:#4f8fff; }
 body.light .calc-btn { background:#142850; }
-html { background:var(--bg); }
-body { min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; padding-bottom:60px; -webkit-tap-highlight-color:transparent; }
+html { background:var(--bg); overflow-x:hidden; }
+body { min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; padding-bottom:60px; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
 
 
 .nav { max-width:480px; margin:0 auto; padding:14px 16px 0; }
 .nav-top { display:flex; align-items:center; gap:8px; }
-.app-title { font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text); flex-shrink:0; }
+.app-title { font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text); flex-shrink:1; min-width:0; }
 .app-title-accent { color:var(--accent); }
 .spacer { flex:1; }
 /* switch + theme btn — accent color always, brighter on hover for pointer devices */
-.switch-btn { height:32px; background:transparent; border:none; font-family:var(--sans); font-size:11px; font-weight:700; color:var(--accent); cursor:pointer; padding:0 8px; white-space:nowrap; flex-shrink:0; border-radius:6px; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
+.switch-btn { height:32px; background:transparent; border:none; font-family:var(--sans); font-size:11px; font-weight:700; color:var(--accent); cursor:pointer; padding:0 8px; white-space:nowrap; flex-shrink:1; min-width:0; border-radius:6px; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
 @media(hover:hover){ .switch-btn:hover { opacity:0.6; } }
 .theme-btn { width:38px; height:38px; background:transparent; border:none; font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--accent); flex-shrink:0; border-radius:8px; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
 @media(hover:hover){ .theme-btn:hover { opacity:0.6; } }
