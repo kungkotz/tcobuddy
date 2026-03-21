@@ -103,16 +103,16 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .pair-divider-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); white-space:nowrap; }
 .pair-divider-line { flex:1; height:1px; background:var(--border); }
 .ts-row { display:flex; margin-bottom:8px; }
-.ts-stamp-btn { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; text-align:center; transition:border-color 0.15s,background 0.15s; display:flex; align-items:center; overflow:hidden; width:100%; }
+.ts-stamp-btn { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; text-align:center; transition:border-color 0.15s,background 0.15s; display:flex; align-items:center; overflow:hidden; width:100%; -webkit-tap-highlight-color:transparent; }
 .ts-stamp-btn.stamped { border-color:rgba(79,143,255,0.3); background:var(--accent-bg); }
-.ts-btn-main { flex:1; padding:14px 10px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+.ts-btn-main { flex:1; padding:14px 10px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; }
 .ts-btn-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); line-height:1.5; display:block; }
 .ts-btn-time { font-family:var(--mono); font-size:18px; font-weight:500; color:var(--accent); line-height:1.3; margin-top:3px; display:none; }
 .ts-btn-time.visible { display:block; }
 .ts-btn-hint { font-family:var(--mono); font-size:10px; color:var(--hint); margin-top:3px; display:none; }
 .ts-btn-hint.visible { display:block; }
-.ts-clear-zone { width:0; overflow:hidden; display:flex; align-items:center; justify-content:center; background:transparent; border-left:none; transition:width 0.18s,background 0.18s; cursor:pointer; flex-shrink:0; align-self:stretch; }
-.ts-stamp-btn.stamped .ts-clear-zone { width:20%; border-left:1px solid var(--border); }
+.ts-clear-zone { width:0; overflow:hidden; display:flex; align-items:center; justify-content:center; background:transparent; border-left:none; transition:width 0.18s,background 0.18s; cursor:pointer !important; flex-shrink:0; align-self:stretch; }
+.ts-stamp-btn.stamped .ts-clear-zone { width:22%; border-left:1px solid var(--border); cursor:pointer; }
 .ts-clear-zone:hover,.ts-clear-zone:active { background:var(--danger-bg) !important; }
 .ts-clear-zone svg { width:14px; height:14px; stroke:var(--danger); fill:none; stroke-width:2; stroke-linecap:round; opacity:0; transition:opacity 0.18s; flex-shrink:0; }
 .ts-stamp-btn.stamped .ts-clear-zone svg { opacity:1; }
@@ -450,7 +450,14 @@ function tourBack() {
   showTourStep(_tourIdx);
 }
 function endTour() {
-  document.getElementById('tour-overlay').classList.add('hidden');
+  var overlay = document.getElementById('tour-overlay');
+  overlay.classList.add('hidden');
+  overlay.style.pointerEvents = 'none';
+  var spotlight = document.getElementById('tour-spotlight');
+  spotlight.style.pointerEvents = 'none';
+  spotlight.style.boxShadow = 'none';
+  var tooltip = document.getElementById('tour-tooltip');
+  tooltip.style.pointerEvents = 'none';
   goToTab('timestamps');
 }
 
