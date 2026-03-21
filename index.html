@@ -330,9 +330,6 @@ function toggleTheme() { setTheme(_theme === 'dark' ? 'light' : 'dark'); }
   if (!saved) saved = window.matchMedia && window.matchMedia('(prefers-color-scheme:light)').matches ? 'light' : 'dark';
   setTheme(saved);
 })();
-(function() {
-
-})();
 
 /* ── Tabs ── */
 var _currentTab = 'timestamps';
@@ -361,11 +358,6 @@ function closeWelcome() {
 }
 function startTour() {
   closeWelcome();
-  _tourIdx = 0;
-  document.getElementById('tour-overlay').classList.remove('hidden');
-  showTourStep(0);
-}
-function replayTour() {
   _tourIdx = 0;
   document.getElementById('tour-overlay').classList.remove('hidden');
   showTourStep(0);
@@ -588,9 +580,7 @@ function handlePress(id) {
   else { data[id]=nowStr(); saveStamps(data); renderOne(id,data[id]); updateDuration(PAIRS[id].group); }
 }
 function clearStamp(id) { var data=loadStamps(); delete data[id]; saveStamps(data); renderOne(id,null); updateDuration(PAIRS[id].group); }
-function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {} (function() {
-  
-})();
+function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {} }
 
 renderAll();
 
@@ -598,7 +588,7 @@ try {
   if (localStorage.getItem('tco-skip-welcome') === '1') {
     document.getElementById('welcome-overlay').classList.add('hidden');
   }
-} catch(e) {} }
+} catch(e) {}
 
 /* ── Modal ── */
 var _modalId = null;
@@ -612,9 +602,7 @@ function closeModal() { modalOverlay.classList.remove('open'); _modalId=null; }
 function saveModal() { var val=modalInput.value.trim(); if(toMins(val)===null){modalError.style.display='block';return;} var data=loadStamps(); data[_modalId]=val; saveStamps(data); renderOne(_modalId,val); updateDuration(PAIRS[_modalId].group); closeModal(); }
 function handleOverlayClick(e) { if(e.target===modalOverlay)closeModal(); }
 
-(function() {
-  
-})();
+
 
 renderAll();
 </script>
