@@ -364,7 +364,14 @@ function startTour() {
 }
 function replayTour() {
   _tourIdx = 0;
-  document.getElementById('tour-overlay').classList.remove('hidden');
+  var overlay = document.getElementById('tour-overlay');
+  var spotlight = document.getElementById('tour-spotlight');
+  var tooltip = document.getElementById('tour-tooltip');
+  overlay.classList.remove('hidden');
+  overlay.style.pointerEvents = 'all';
+  spotlight.style.pointerEvents = 'none';
+  spotlight.style.boxShadow = '0 0 0 9999px rgba(0,0,0,0.75)';
+  tooltip.style.pointerEvents = 'all';
   showTourStep(0);
 }
 
