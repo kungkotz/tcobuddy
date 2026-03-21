@@ -140,7 +140,7 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 
 /* Welcome */
 .welcome-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; z-index:500; padding:20px; transition:opacity 0.2s; }
-.welcome-overlay.hidden { opacity:0; pointer-events:none; }
+.welcome-overlay.hidden { opacity:0; pointer-events:none; display:none; }
 .welcome-box { background:var(--surface2); border:1px solid var(--border-hi); border-radius:16px; padding:28px 24px 24px; width:100%; max-width:360px; }
 .welcome-title { font-size:20px; font-weight:700; color:var(--text); margin-bottom:12px; letter-spacing:-0.01em; }
 .welcome-title span { color:var(--accent); }
@@ -331,8 +331,7 @@ function toggleTheme() { setTheme(_theme === 'dark' ? 'light' : 'dark'); }
   setTheme(saved);
 })();
 (function() {
-  var seen; try { seen = localStorage.getItem('tco-tour-seen'); } catch(e) {}
-  if (seen) document.getElementById('welcome-overlay').classList.add('hidden');
+
 })();
 
 /* ── Tabs ── */
@@ -590,11 +589,7 @@ function handlePress(id) {
 }
 function clearStamp(id) { var data=loadStamps(); delete data[id]; saveStamps(data); renderOne(id,null); updateDuration(PAIRS[id].group); }
 function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {} (function() {
-  try {
-    if (localStorage.getItem('tco-tour-seen')) {
-      document.getElementById('welcome-overlay').classList.add('hidden');
-    }
-  } catch(e) {}
+  
 })();
 
 renderAll();
@@ -618,11 +613,7 @@ function saveModal() { var val=modalInput.value.trim(); if(toMins(val)===null){m
 function handleOverlayClick(e) { if(e.target===modalOverlay)closeModal(); }
 
 (function() {
-  try {
-    if (localStorage.getItem('tco-tour-seen')) {
-      document.getElementById('welcome-overlay').classList.add('hidden');
-    }
-  } catch(e) {}
+  
 })();
 
 renderAll();
