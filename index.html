@@ -148,6 +148,9 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .welcome-actions { display:flex; flex-direction:column; gap:10px; }
 .welcome-primary { height:48px; background:var(--accent); border:none; border-radius:var(--radius); font-family:var(--sans); font-size:15px; font-weight:700; color:#fff; cursor:pointer; }
 .welcome-secondary { height:44px; background:transparent; border:1px solid var(--border-hi); border-radius:var(--radius); font-family:var(--sans); font-size:14px; font-weight:500; color:var(--muted); cursor:pointer; }
+.welcome-check { display:flex; align-items:center; gap:8px; margin-top:16px; cursor:pointer; }
+.welcome-check input { width:16px; height:16px; accent-color:var(--accent); cursor:pointer; flex-shrink:0; }
+.welcome-check span { font-family:var(--mono); font-size:12px; color:var(--muted); }
 
 /* Tour */
 .tour-overlay { position:fixed; inset:0; z-index:400; transition:opacity 0.3s; }
@@ -176,6 +179,10 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
       <button class="welcome-primary" onclick="startTour()">Show me around</button>
       <button class="welcome-secondary" onclick="closeWelcome()">Skip tutorial</button>
     </div>
+    <label class="welcome-check">
+      <input type="checkbox" id="dont-show-again" onchange="toggleDontShow(this.checked)" />
+      <span>Don't show this again</span>
+    </label>
   </div>
 </div>
 
@@ -344,9 +351,14 @@ function goToTab(tab) {
 }
 
 /* ── Welcome ── */
+function toggleDontShow(checked) {
+  try {
+    if (checked) localStorage.setItem('tco-skip-welcome', '1');
+    else localStorage.removeItem('tco-skip-welcome');
+  } catch(e) {}
+}
 function closeWelcome() {
   document.getElementById('welcome-overlay').classList.add('hidden');
-  try { localStorage.setItem('tco-tour-seen', '1'); } catch(e) {}
 }
 function startTour() {
   closeWelcome();
@@ -580,6 +592,14 @@ function clearStamp(id) { var data=loadStamps(); delete data[id]; saveStamps(dat
 function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {} (function() {
   try {
     if (localStorage.getItem('tco-tour-seen')) {
+      document.getElementById('welcome-overlay').classList.add('hidden');
+    }
+  } catch(e) {}
+})();
+
+(function() {
+  try {
+    if (localStorage.getItem('tco-skip-welcome') === '1') {
       document.getElementById('welcome-overlay').classList.add('hidden');
     }
   } catch(e) {}
