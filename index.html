@@ -587,7 +587,7 @@ function handlePress(id) {
   else { data[id]=nowStr(); saveStamps(data); renderOne(id,data[id]); updateDuration(PAIRS[id].group); }
 }
 function clearStamp(id) { var data=loadStamps(); delete data[id]; saveStamps(data); renderOne(id,null); updateDuration(PAIRS[id].group); }
-function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {} }
+function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {} renderAll(); }
 
 renderAll();
 
