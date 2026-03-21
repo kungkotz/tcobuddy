@@ -28,26 +28,29 @@ body.light {
   --amber:#8a6200; --amber-bg:rgba(138,98,0,0.09);
 }
 body.light .app-title-accent { color:#4f8fff; }
-body.light .switch-btn { color:#142850; }
+body.light .switch-btn { color:#142850; border-color:#142850; }
 body.light .theme-btn svg { stroke:#142850; }
 body.light .calc-btn { background:#142850; }
+
 html { background:var(--bg); overflow-x:hidden; }
 body { min-height:100vh; background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased; padding-bottom:60px; -webkit-tap-highlight-color:transparent; overflow-x:hidden; }
 
+/* Nav */
 .nav { max-width:480px; margin:0 auto; padding:14px 16px 0; }
 .nav-top { display:flex; align-items:center; gap:8px; }
 .app-title { font-size:22px; font-weight:700; letter-spacing:-0.02em; color:var(--text); flex-shrink:1; min-width:0; }
 .app-title-accent { color:var(--accent); }
 .spacer { flex:1; }
-.switch-btn { height:34px; background:transparent; border:1px solid var(--accent); font-family:var(--sans); font-size:13px; font-weight:700; color:var(--accent); cursor:pointer; padding:0 12px; white-space:nowrap; flex-shrink:0; border-radius:8px; transition:opacity 0.15s; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
-@media(hover:hover){ .switch-btn:hover { opacity:0.6; } }
+.switch-btn { height:34px; background:transparent; border:1px solid var(--accent); font-family:var(--sans); font-size:13px; font-weight:700; color:var(--accent); cursor:pointer; padding:0 12px; white-space:nowrap; flex-shrink:0; border-radius:8px; -webkit-tap-highlight-color:transparent; -webkit-appearance:none; appearance:none; }
 .theme-btn { width:32px; height:32px; background:transparent; border:none; outline:none; cursor:pointer; display:flex; align-items:center; justify-content:center; flex-shrink:0; padding:0; -webkit-appearance:none; appearance:none; -webkit-tap-highlight-color:transparent; }
 .theme-btn svg { width:22px; height:22px; stroke:var(--accent); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
 
+/* Page */
 .page { max-width:480px; margin:0 auto; padding:20px 20px 0; }
 .tab-panel { display:none; }
 .tab-panel.active { display:block; }
 
+/* Fields */
 .section-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); margin:0 0 8px 2px; }
 .field-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px; }
 .field { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:12px 14px 10px; transition:border-color 0.15s,background 0.15s; cursor:text; }
@@ -64,9 +67,10 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .field-wide-left .field-code { margin-bottom:0; }
 .field-wide-right input { background:transparent; border:none; outline:none; font-family:var(--mono); font-size:22px; font-weight:500; color:var(--text); caret-color:var(--accent); width:64px; text-align:right; padding:0; }
 .field-wide-right input::placeholder { color:var(--hint); font-size:22px; font-weight:500; }
-.calc-btn { width:100%; height:52px; background:var(--accent); border:none; border-radius:var(--radius); font-family:var(--sans); font-size:15px; font-weight:700; color:#fff; cursor:pointer; letter-spacing:0.01em; display:flex; align-items:center; justify-content:center; gap:8px; transition:opacity 0.15s,transform 0.1s; margin-bottom:20px; }
-.calc-btn:hover { opacity:0.9; }
-.calc-btn:active { opacity:0.8; transform:scale(0.99); }
+
+/* Buttons */
+.calc-btn { width:100%; height:52px; background:var(--accent); border:none; border-radius:var(--radius); font-family:var(--sans); font-size:15px; font-weight:700; color:#fff; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; transition:opacity 0.15s; margin-bottom:20px; }
+.calc-btn:active { opacity:0.8; }
 .calc-btn svg { width:17px; height:17px; stroke:#fff; fill:none; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; }
 .error-box { background:var(--danger-bg); border:1px solid rgba(255,92,92,0.2); border-radius:var(--radius); padding:12px 16px; font-family:var(--mono); font-size:13px; color:var(--danger); margin-bottom:16px; display:none; }
 .result-card { background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:none; margin-bottom:12px; animation:up 0.22s cubic-bezier(0.16,1,0.3,1); }
@@ -82,39 +86,41 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .result-row:last-child { border-bottom:none; }
 .result-row-title { font-size:13px; font-weight:500; color:var(--text); display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
 .result-row-note { font-family:var(--mono); font-size:11px; color:var(--hint); margin-top:4px; line-height:1.6; }
-.result-row-value { font-family:var(--mono); font-size:17px; font-weight:500; flex-shrink:0; text-align:right; padding-top:1px; }
+.result-row-value { font-family:var(--mono); font-size:17px; font-weight:500; flex-shrink:0; text-align:right; }
 .result-row-value.accent { color:var(--accent); }
 .result-row-value.danger { color:var(--danger); }
 .result-row-value.success { color:var(--success); }
-.badge { display:inline-block; padding:2px 7px; border-radius:20px; font-family:var(--mono); font-size:10px; font-weight:500; letter-spacing:0.06em; }
+.badge { display:inline-block; padding:2px 7px; border-radius:20px; font-family:var(--mono); font-size:10px; font-weight:500; }
 .badge-yes { background:var(--danger-bg); color:var(--danger); border:1px solid rgba(255,92,92,0.2); }
 .badge-no  { background:var(--success-bg); color:var(--success); border:1px solid rgba(62,207,142,0.2); }
-.clear-btn-small { width:100%; height:44px; background:transparent; border:1px solid var(--border); border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; transition:border-color 0.15s,color 0.15s; display:none; }
-.clear-btn-small:hover { border-color:var(--border-hi); color:var(--text); }
+.clear-btn-small { width:100%; height:44px; background:transparent; border:1px solid var(--border); border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; display:none; }
+
+/* Timestamps */
 .pair-group { margin-bottom:20px; }
 .pair-divider { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
 .pair-divider-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); white-space:nowrap; }
 .pair-divider-line { flex:1; height:1px; background:var(--border); }
 .ts-row { display:flex; margin-bottom:8px; }
 .ts-stamp-btn { flex:1; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); cursor:pointer; text-align:center; transition:border-color 0.15s,background 0.15s; display:flex; align-items:center; overflow:hidden; width:100%; }
-.ts-stamp-btn:hover { border-color:var(--border-hi); }
 .ts-stamp-btn.stamped { border-color:rgba(79,143,255,0.3); background:var(--accent-bg); }
 .ts-btn-main { flex:1; padding:14px 10px 16px; display:flex; flex-direction:column; align-items:center; justify-content:center; }
-.ts-btn-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); line-height:1.5; display:block; white-space:normal; word-break:break-word; }
+.ts-btn-label { font-family:var(--mono); font-size:13px; font-weight:500; color:var(--text); line-height:1.5; display:block; }
 .ts-btn-time { font-family:var(--mono); font-size:18px; font-weight:500; color:var(--accent); line-height:1.3; margin-top:3px; display:none; }
 .ts-btn-time.visible { display:block; }
 .ts-btn-hint { font-family:var(--mono); font-size:10px; color:var(--hint); margin-top:3px; display:none; }
 .ts-btn-hint.visible { display:block; }
 .ts-clear-zone { width:0; overflow:hidden; display:flex; align-items:center; justify-content:center; background:transparent; border-left:none; transition:width 0.18s,background 0.18s; cursor:pointer; flex-shrink:0; align-self:stretch; }
 .ts-stamp-btn.stamped .ts-clear-zone { width:20%; border-left:1px solid var(--border); }
-.ts-clear-zone:hover,.ts-clear-zone:active { background:var(--danger-bg) !important; border-left-color:rgba(255,92,92,0.3) !important; }
+.ts-clear-zone:hover,.ts-clear-zone:active { background:var(--danger-bg) !important; }
 .ts-clear-zone svg { width:14px; height:14px; stroke:var(--danger); fill:none; stroke-width:2; stroke-linecap:round; opacity:0; transition:opacity 0.18s; flex-shrink:0; }
 .ts-stamp-btn.stamped .ts-clear-zone svg { opacity:1; }
 .pair-footer { display:none; justify-content:flex-end; margin-top:4px; margin-bottom:4px; }
 .pair-footer.visible { display:flex; }
 .pair-footer-text { font-family:var(--mono); font-size:12px; color:var(--amber); background:var(--amber-bg); border:1px solid rgba(245,166,35,0.2); border-radius:20px; padding:2px 10px; }
-.clear-all-ts { width:100%; height:44px; background:transparent; border:1px solid var(--border); border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; transition:border-color 0.15s,color 0.15s; margin-top:8px; }
+.clear-all-ts { width:100%; height:44px; background:transparent; border:1px solid var(--border); border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; margin-top:8px; }
 .clear-all-ts:hover { border-color:var(--danger); color:var(--danger); }
+
+/* Modal */
 .modal-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.7); display:flex; align-items:center; justify-content:center; z-index:200; padding:20px; opacity:0; pointer-events:none; transition:opacity 0.18s; }
 .modal-overlay.open { opacity:1; pointer-events:all; }
 .modal { background:var(--surface2); border:1px solid var(--border-hi); border-radius:16px; padding:24px 20px 20px; width:100%; max-width:320px; transform:translateY(16px); transition:transform 0.2s cubic-bezier(0.16,1,0.3,1); }
@@ -122,24 +128,76 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 .modal-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:4px; }
 .modal-sub { font-family:var(--mono); font-size:11px; color:var(--muted); margin-bottom:20px; }
 .modal-input-wrap { background:var(--surface); border:1px solid var(--border-hi); border-radius:var(--radius); padding:12px 16px; margin-bottom:20px; display:flex; align-items:center; gap:8px; }
-.modal-input-wrap svg { width:16px; height:16px; stroke:var(--muted); fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+.modal-input-wrap svg { width:16px; height:16px; stroke:var(--muted); fill:none; stroke-width:2; stroke-linecap:round; flex-shrink:0; }
 .modal-input { background:transparent; border:none; outline:none; font-family:var(--mono); font-size:28px; font-weight:500; color:var(--text); caret-color:var(--accent); width:100%; padding:0; }
 .modal-input::placeholder { color:var(--hint); }
 .modal-error { font-family:var(--mono); font-size:12px; color:var(--danger); margin-top:-12px; margin-bottom:14px; display:none; }
 .modal-actions { display:flex; gap:8px; }
 .modal-cancel { flex:1; height:44px; background:transparent; border:1px solid var(--border); border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:700; color:var(--muted); cursor:pointer; }
-.modal-cancel:hover { border-color:var(--border-hi); color:var(--text); }
 .modal-save { flex:1; height:44px; background:var(--accent); border:none; border-radius:var(--radius); font-family:var(--sans); font-size:13px; font-weight:700; color:#fff; cursor:pointer; }
-.modal-save:hover { opacity:0.9; }
+
+/* Welcome */
+.welcome-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); display:flex; align-items:center; justify-content:center; z-index:500; padding:20px; transition:opacity 0.2s; }
+.welcome-overlay.hidden { opacity:0; pointer-events:none; }
+.welcome-box { background:var(--surface2); border:1px solid var(--border-hi); border-radius:16px; padding:28px 24px 24px; width:100%; max-width:360px; }
+.welcome-title { font-size:20px; font-weight:700; color:var(--text); margin-bottom:12px; letter-spacing:-0.01em; }
+.welcome-title span { color:var(--accent); }
+.welcome-body { font-family:var(--mono); font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:24px; }
+.welcome-actions { display:flex; flex-direction:column; gap:10px; }
+.welcome-primary { height:48px; background:var(--accent); border:none; border-radius:var(--radius); font-family:var(--sans); font-size:15px; font-weight:700; color:#fff; cursor:pointer; }
+.welcome-secondary { height:44px; background:transparent; border:1px solid var(--border-hi); border-radius:var(--radius); font-family:var(--sans); font-size:14px; font-weight:500; color:var(--muted); cursor:pointer; }
+
+/* Tour */
+.tour-overlay { position:fixed; inset:0; z-index:400; transition:opacity 0.3s; }
+.tour-overlay.hidden { opacity:0; pointer-events:none; }
+.tour-spotlight { position:fixed; border-radius:10px; box-shadow:0 0 0 9999px rgba(0,0,0,0.75); transition:all 0.35s cubic-bezier(0.16,1,0.3,1); pointer-events:none; }
+.tour-tooltip { position:fixed; background:var(--surface2); border:1px solid var(--border-hi); border-radius:14px; padding:16px 18px; width:calc(100vw - 32px); max-width:340px; pointer-events:all; transition:all 0.35s cubic-bezier(0.16,1,0.3,1); }
+.tour-step-label { font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; }
+.tour-text { font-family:var(--mono); font-size:13px; color:var(--text); line-height:1.6; margin-bottom:16px; }
+.tour-actions { display:flex; align-items:center; gap:8px; }
+.tour-back { height:36px; background:transparent; border:1px solid var(--border-hi); border-radius:8px; font-family:var(--sans); font-size:13px; font-weight:500; color:var(--muted); cursor:pointer; padding:0 14px; flex-shrink:0; }
+.tour-dots { display:flex; gap:4px; flex:1; justify-content:center; }
+.tour-dot { width:6px; height:6px; border-radius:50%; background:var(--border-hi); flex-shrink:0; }
+.tour-dot.active { background:var(--accent); }
+.tour-skip { height:36px; background:transparent; border:none; font-family:var(--mono); font-size:11px; color:var(--muted); cursor:pointer; padding:0; flex-shrink:0; }
+.tour-next { height:36px; background:var(--accent); border:none; border-radius:8px; font-family:var(--sans); font-size:13px; font-weight:700; color:#fff; cursor:pointer; padding:0 16px; flex-shrink:0; }
 </style>
 </head>
 <body>
 
+<!-- Welcome -->
+<div class="welcome-overlay" id="welcome-overlay">
+  <div class="welcome-box">
+    <div class="welcome-title">Welcome to TCO<span>Buddy</span>!</div>
+    <div class="welcome-body">Your companion for tracking turnaround events and calculating flight delays.<br><br>Would you like a quick tour of the app?</div>
+    <div class="welcome-actions">
+      <button class="welcome-primary" onclick="startTour()">Show me around</button>
+      <button class="welcome-secondary" onclick="closeWelcome()">Skip tutorial</button>
+    </div>
+  </div>
+</div>
+
+<!-- Tour -->
+<div class="tour-overlay hidden" id="tour-overlay">
+  <div class="tour-spotlight" id="tour-spotlight"></div>
+  <div class="tour-tooltip" id="tour-tooltip">
+    <div class="tour-step-label" id="tour-step-label"></div>
+    <div class="tour-text" id="tour-text"></div>
+    <div class="tour-actions">
+      <button class="tour-back" id="tour-back" onclick="tourBack()">Back</button>
+      <div class="tour-dots" id="tour-dots"></div>
+      <button class="tour-skip" onclick="endTour()">Skip</button>
+      <button class="tour-next" id="tour-next" onclick="tourNext()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- Nav -->
 <div class="nav">
   <div class="nav-top">
     <span class="app-title">TCO<span class="app-title-accent">Buddy</span></span>
     <span class="spacer"></span>
-    <button class="switch-btn" id="switch-btn" onclick="switchTab()">Timestamps</button>
+    <button class="switch-btn" id="switch-btn" onclick="switchTab()">Delay Calculator</button>
     <button class="theme-btn" id="theme-btn" onclick="toggleTheme()">
       <svg id="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       <svg id="icon-sun" style="display:none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
@@ -148,53 +206,9 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 </div>
 
 <div class="page">
-  <div class="tab-panel active" id="tab-delay">
-    <div style="margin-top:20px;"></div>
-    <div class="section-label">Arrival</div>
-    <div class="field-row">
-      <div class="field" onclick="this.querySelector('input').focus()">
-        <span class="field-code">SIBT</span>
-        <input type="text" id="sibt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
-        <span class="field-inline-err">Invalid time</span>
-      </div>
-      <div class="field" onclick="this.querySelector('input').focus()">
-        <span class="field-code">AIBT</span>
-        <input type="text" id="aibt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
-        <span class="field-inline-err">Invalid time</span>
-      </div>
-    </div>
-    <div class="section-label">Departure</div>
-    <div class="field-row">
-      <div class="field" onclick="this.querySelector('input').focus()">
-        <span class="field-code">SOBT</span>
-        <input type="text" id="sobt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
-        <span class="field-inline-err">Invalid time</span>
-      </div>
-      <div class="field" onclick="this.querySelector('input').focus()">
-        <span class="field-code">AOBT</span>
-        <input type="text" id="aobt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
-        <span class="field-inline-err">Invalid time</span>
-      </div>
-    </div>
-    <div class="section-label">Turnaround</div>
-    <div class="mtt-row">
-      <div class="field-wide" onclick="this.querySelector('input').focus()">
-        <div class="field-wide-left"><span class="field-code">Turnaround Time</span></div>
-        <div class="field-wide-right">
-          <input type="text" id="mtt" inputmode="numeric" placeholder="00" maxlength="3" autocomplete="off" />
-        </div>
-      </div>
-    </div>
-    <button class="calc-btn" onclick="calculate()">
-      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-      Calculate
-    </button>
-    <div class="error-box" id="error"></div>
-    <div class="result-card" id="result"></div>
-    <button class="clear-btn-small" id="clear-btn" onclick="clearDelay()">Clear all fields</button>
-  </div>
 
-  <div class="tab-panel" id="tab-timestamps">
+  <!-- Timestamps tab (default) -->
+  <div class="tab-panel active" id="tab-timestamps">
     <div style="margin-top:20px;"></div>
     <div class="pair-group">
       <div class="pair-divider"><span class="pair-divider-label">Deboarding</span><div class="pair-divider-line"></div></div>
@@ -220,10 +234,59 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
       <div class="ts-row"><button class="ts-stamp-btn" id="btn-pax-last"><span class="ts-btn-main" onclick="handlePress('pax-last')"><span class="ts-btn-label">Last Pax In</span><span class="ts-btn-time" id="time-pax-last"></span><span class="ts-btn-hint" id="hint-pax-last">tap to edit</span></span><span class="ts-clear-zone" onclick="clearStamp('pax-last')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span></button></div>
       <div class="pair-footer" id="dur-boarding"><span class="pair-footer-text" id="dur-text-boarding"></span></div>
     </div>
-    <button class="clear-all-ts" onclick="clearAllStamps()">Clear all timestamps</button>
+    <button class="clear-all-ts" id="clear-all-ts" onclick="clearAllStamps()">Clear all timestamps</button>
   </div>
+
+  <!-- Delay Calculator tab -->
+  <div class="tab-panel" id="tab-delay">
+    <div style="margin-top:20px;"></div>
+    <div class="section-label">Arrival</div>
+    <div class="field-row" id="arrival-row">
+      <div class="field" onclick="this.querySelector('input').focus()">
+        <span class="field-code">SIBT</span>
+        <input type="text" id="sibt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
+        <span class="field-inline-err">Invalid time</span>
+      </div>
+      <div class="field" onclick="this.querySelector('input').focus()">
+        <span class="field-code">AIBT</span>
+        <input type="text" id="aibt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
+        <span class="field-inline-err">Invalid time</span>
+      </div>
+    </div>
+    <div class="section-label">Departure</div>
+    <div class="field-row" id="departure-row">
+      <div class="field" onclick="this.querySelector('input').focus()">
+        <span class="field-code">SOBT</span>
+        <input type="text" id="sobt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
+        <span class="field-inline-err">Invalid time</span>
+      </div>
+      <div class="field" onclick="this.querySelector('input').focus()">
+        <span class="field-code">AOBT</span>
+        <input type="text" id="aobt" inputmode="numeric" placeholder="00:00" maxlength="5" autocomplete="off" />
+        <span class="field-inline-err">Invalid time</span>
+      </div>
+    </div>
+    <div class="section-label">Turnaround</div>
+    <div class="mtt-row">
+      <div class="field-wide" onclick="this.querySelector('input').focus()">
+        <div class="field-wide-left"><span class="field-code">Turnaround Time</span></div>
+        <div class="field-wide-right">
+          <input type="text" id="mtt" inputmode="numeric" placeholder="00" maxlength="3" autocomplete="off" />
+        </div>
+      </div>
+    </div>
+    <button class="calc-btn" id="calc-btn" onclick="calculate()">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Calculate
+    </button>
+    <div class="error-box" id="error"></div>
+    <div class="result-card" id="result"></div>
+    <button class="clear-btn-small" id="clear-btn" onclick="clearDelay()">Clear all fields</button>
+  </div>
+
 </div>
 
+<!-- Edit modal -->
 <div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
   <div class="modal">
     <div class="modal-title" id="modal-title">Edit time</div>
@@ -241,97 +304,266 @@ body { min-height:100vh; background:var(--bg); color:var(--text); font-family:va
 </div>
 
 <script>
-var _theme='dark';
-function setTheme(t){
-  _theme=t;
-  document.body.className=t==='light'?'light':'';
-  document.getElementById('icon-moon').style.display=t==='light'?'none':'block';
-  document.getElementById('icon-sun').style.display=t==='light'?'block':'none';
-  try{localStorage.setItem('dc-theme',t);}catch(e){}
+/* ── Theme ── */
+var _theme = 'dark';
+function setTheme(t) {
+  _theme = t;
+  document.body.className = t === 'light' ? 'light' : '';
+  document.getElementById('icon-moon').style.display = t === 'light' ? 'none' : 'block';
+  document.getElementById('icon-sun').style.display  = t === 'light' ? 'block' : 'none';
+  try { localStorage.setItem('dc-theme', t); } catch(e) {}
 }
-function toggleTheme(){setTheme(_theme==='dark'?'light':'dark');}
-(function(){
-  var saved;try{saved=localStorage.getItem('dc-theme');}catch(e){}
-  if(!saved)saved=window.matchMedia&&window.matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';
+function toggleTheme() { setTheme(_theme === 'dark' ? 'light' : 'dark'); }
+(function() {
+  var saved;
+  try { saved = localStorage.getItem('dc-theme'); } catch(e) {}
+  if (!saved) saved = window.matchMedia && window.matchMedia('(prefers-color-scheme:light)').matches ? 'light' : 'dark';
   setTheme(saved);
 })();
 
-var _currentTab='delay';
-function switchTab(){
-  _currentTab=_currentTab==='delay'?'timestamps':'delay';
-  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
-  document.getElementById('tab-'+_currentTab).classList.add('active');
-  document.getElementById('switch-btn').textContent=_currentTab==='delay'?'Timestamps':'Delay Calculator';
+/* ── Tabs ── */
+var _currentTab = 'timestamps';
+function switchTab() {
+  _currentTab = _currentTab === 'timestamps' ? 'delay' : 'timestamps';
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('tab-' + _currentTab).classList.add('active');
+  document.getElementById('switch-btn').textContent = _currentTab === 'timestamps' ? 'Delay Calculator' : 'Timestamps';
+}
+function goToTab(tab) {
+  _currentTab = tab;
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('switch-btn').textContent = tab === 'timestamps' ? 'Delay Calculator' : 'Timestamps';
 }
 
-function toMins(str){var m=str.trim().match(/^(\d{1,2}):(\d{2})$/);if(!m)return null;var h=parseInt(m[1]),mn=parseInt(m[2]);if(h>23||mn>59)return null;return h*60+mn;}
-function fmt(mins){var a=Math.abs(mins),h=Math.floor(a/60),m=a%60;if(h===0)return m+' min';return h+'h '+(m?m+'min':'');}
-function fmtT(mins){var w=((mins%1440)+1440)%1440;return String(Math.floor(w/60)).padStart(2,'0')+':'+String(w%60).padStart(2,'0');}
-function resolve(t,ref){return [t-1440,t,t+1440].reduce(function(b,c){return Math.abs(c-ref)<Math.abs(b-ref)?c:b;});}
-var FIELD_ORDER=['sibt','aibt','sobt','aobt','mtt'];
-function autoColon(el){
-  el.addEventListener('input',function(){
-    var v=this.value.replace(/\D/g,'');
-    if(v.length>=3)v=v.slice(0,2)+':'+v.slice(2,4);
-    this.value=v;
-    if(v.length===5){
-      var parts=v.match(/^(\d{2}):(\d{2})$/);
-      var valid=parts&&parseInt(parts[1])<=23&&parseInt(parts[2])<=59;
-      var fe=this.closest('.field'),es=fe?fe.querySelector('.field-inline-err'):null;
-      if(valid){if(es)es.style.display='none';fe&&fe.classList.remove('field-invalid');var idx=FIELD_ORDER.indexOf(this.id);if(idx!==-1&&idx<FIELD_ORDER.length-1){var next=document.getElementById(FIELD_ORDER[idx+1]);if(next){next.focus();next.select();}}}
-      else{if(es)es.style.display='block';fe&&fe.classList.add('field-invalid');}
-    }else{var fe2=this.closest('.field'),es2=fe2?fe2.querySelector('.field-inline-err'):null;if(es2)es2.style.display='none';fe2&&fe2.classList.remove('field-invalid');}
-  });
-  el.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();calculate();}});
+/* ── Welcome ── */
+function closeWelcome() {
+  document.getElementById('welcome-overlay').classList.add('hidden');
 }
-['sibt','aibt','sobt','aobt'].forEach(function(id){autoColon(document.getElementById(id));});
-var mttEl=document.getElementById('mtt');
-mttEl.addEventListener('input',function(){this.value=this.value.replace(/\D/g,'');});
-mttEl.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();calculate();}});
-function calculate(){
-  var errEl=document.getElementById('error'),resEl=document.getElementById('result'),clrBtn=document.getElementById('clear-btn');
-  errEl.style.display='none';resEl.style.display='none';clrBtn.style.display='none';
-  var sibtV=toMins(document.getElementById('sibt').value),aibtV=toMins(document.getElementById('aibt').value);
-  var sobtV=toMins(document.getElementById('sobt').value),aobtV=toMins(document.getElementById('aobt').value);
+function startTour() {
+  closeWelcome();
+  _tourIdx = 0;
+  document.getElementById('tour-overlay').classList.remove('hidden');
+  showTourStep(0);
+}
+
+/* ── Tour ── */
+var _tourSteps = [
+  { tab:'timestamps', id:'btn-deboard-start', text:'Tap any button to save the current time instantly. Tap again to edit it manually.' },
+  { tab:'timestamps', id:'btn-deboard-end',   text:'Once both start and end times are saved, the total duration will appear under the group.' },
+  { tab:'timestamps', id:'all-groups',        text:'Each group works the same way — Fueling, Cleaning and Boarding all follow the same pattern.' },
+  { tab:'timestamps', id:'clear-all-ts',      text:'Tap here to reset all timestamps at once — useful between flights.' },
+  { tab:'timestamps', id:'switch-btn',        text:'Tap this button to switch between Timestamps and Delay Calculator.' },
+  { tab:'delay',      id:'all-fields',        text:'Enter SIBT, AIBT, SOBT and AOBT — the scheduled and actual in-block and off-block times.' },
+  { tab:'delay',      id:'mtt',               text:'Enter the minimum turnaround time in minutes for this turnaround.' },
+  { tab:'delay',      id:'calc-btn',          text:'Tap Calculate to see the total delay and if there is any Code 93 delay.' },
+  { tab:'delay',      id:'theme-btn',         text:'Switch between dark and light mode. The app is by default set to follow your device settings.' }
+];
+var _tourIdx = 0;
+
+function getStepEl(step) {
+  if (step.id === 'all-groups') {
+    var groups = document.querySelectorAll('.pair-group');
+    if (!groups.length) return null;
+    var r1 = groups[0].getBoundingClientRect();
+    var r2 = groups[groups.length - 1].getBoundingClientRect();
+    return { getBoundingClientRect: function() { return { left:r1.left, top:r1.top, right:r2.right, bottom:r2.bottom, width:r1.width, height:r2.bottom - r1.top }; } };
+  }
+  if (step.id === 'all-fields') {
+    var row1 = document.getElementById('arrival-row');
+    var row2 = document.getElementById('departure-row');
+    if (!row1 || !row2) return null;
+    var r1 = row1.getBoundingClientRect();
+    var r2 = row2.getBoundingClientRect();
+    return { getBoundingClientRect: function() { return { left:r1.left, top:r1.top, right:r2.right, bottom:r2.bottom, width:r1.width, height:r2.bottom - r1.top }; } };
+  }
+  return document.getElementById(step.id);
+}
+
+function showTourStep(idx) {
+  var step = _tourSteps[idx];
+  window.scrollTo(0, 0);
+  goToTab(step.tab);
+
+  var el = getStepEl(step);
+  if (!el) { tourNext(); return; }
+
+  var r = el.getBoundingClientRect();
+  var pad = 8;
+
+  var spot = document.getElementById('tour-spotlight');
+  spot.style.left   = (r.left - pad) + 'px';
+  spot.style.top    = (r.top - pad) + 'px';
+  spot.style.width  = (r.width + pad * 2) + 'px';
+  spot.style.height = (r.height + pad * 2) + 'px';
+
+  var tip = document.getElementById('tour-tooltip');
+  var tipH = 150;
+  var tipTop = r.bottom + pad + 12;
+  if (tipTop + tipH > window.innerHeight - 10) tipTop = r.top - pad - tipH - 12;
+  tipTop = Math.max(10, Math.min(window.innerHeight - tipH - 10, tipTop));
+  var tipLeft = Math.max(16, Math.min(window.innerWidth - 356, r.left));
+  tip.style.top  = tipTop + 'px';
+  tip.style.left = tipLeft + 'px';
+
+  document.getElementById('tour-step-label').textContent = 'Step ' + (idx + 1) + ' of ' + _tourSteps.length;
+  document.getElementById('tour-text').textContent = step.text;
+
+  var dots = document.getElementById('tour-dots');
+  dots.innerHTML = '';
+  _tourSteps.forEach(function(_, i) {
+    var d = document.createElement('div');
+    d.className = 'tour-dot' + (i === idx ? ' active' : '');
+    dots.appendChild(d);
+  });
+
+  document.getElementById('tour-next').textContent = idx === _tourSteps.length - 1 ? 'Done' : 'Next';
+  document.getElementById('tour-back').style.visibility = idx === 0 ? 'hidden' : 'visible';
+}
+
+function tourNext() {
+  if (_tourIdx >= _tourSteps.length - 1) { endTour(); return; }
+  _tourIdx++;
+  showTourStep(_tourIdx);
+}
+function tourBack() {
+  if (_tourIdx <= 0) return;
+  _tourIdx--;
+  showTourStep(_tourIdx);
+}
+function endTour() {
+  document.getElementById('tour-overlay').classList.add('hidden');
+}
+
+/* ── Delay calculator ── */
+function toMins(str) {
+  var m = str.trim().match(/^(\d{1,2}):(\d{2})$/);
+  if (!m) return null;
+  var h = parseInt(m[1]), mn = parseInt(m[2]);
+  if (h > 23 || mn > 59) return null;
+  return h * 60 + mn;
+}
+function fmt(mins) { var a=Math.abs(mins),h=Math.floor(a/60),m=a%60; if(h===0)return m+' min'; return h+'h '+(m?m+'min':''); }
+function fmtT(mins) { var w=((mins%1440)+1440)%1440; return String(Math.floor(w/60)).padStart(2,'0')+':'+String(w%60).padStart(2,'0'); }
+function resolve(t,ref) { return [t-1440,t,t+1440].reduce(function(b,c){return Math.abs(c-ref)<Math.abs(b-ref)?c:b;}); }
+
+var FIELD_ORDER = ['sibt','aibt','sobt','aobt','mtt'];
+function autoColon(el) {
+  el.addEventListener('input', function() {
+    var v = this.value.replace(/\D/g,'');
+    if (v.length >= 3) v = v.slice(0,2) + ':' + v.slice(2,4);
+    this.value = v;
+    if (v.length === 5) {
+      var parts = v.match(/^(\d{2}):(\d{2})$/);
+      var valid = parts && parseInt(parts[1]) <= 23 && parseInt(parts[2]) <= 59;
+      var fe = this.closest('.field'), es = fe ? fe.querySelector('.field-inline-err') : null;
+      if (valid) {
+        if (es) es.style.display = 'none';
+        fe && fe.classList.remove('field-invalid');
+        var idx = FIELD_ORDER.indexOf(this.id);
+        if (idx !== -1 && idx < FIELD_ORDER.length - 1) { var next = document.getElementById(FIELD_ORDER[idx+1]); if (next) { next.focus(); next.select(); } }
+      } else { if (es) es.style.display = 'block'; fe && fe.classList.add('field-invalid'); }
+    } else {
+      var fe2 = this.closest('.field'), es2 = fe2 ? fe2.querySelector('.field-inline-err') : null;
+      if (es2) es2.style.display = 'none'; fe2 && fe2.classList.remove('field-invalid');
+    }
+  });
+  el.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); calculate(); } });
+}
+['sibt','aibt','sobt','aobt'].forEach(function(id) { autoColon(document.getElementById(id)); });
+var mttEl = document.getElementById('mtt');
+mttEl.addEventListener('input', function() { this.value = this.value.replace(/\D/g,''); });
+mttEl.addEventListener('keydown', function(e) { if (e.key === 'Enter') { e.preventDefault(); calculate(); } });
+
+function calculate() {
+  var errEl=document.getElementById('error'), resEl=document.getElementById('result'), clrBtn=document.getElementById('clear-btn');
+  errEl.style.display='none'; resEl.style.display='none'; clrBtn.style.display='none';
+  var sibtV=toMins(document.getElementById('sibt').value), aibtV=toMins(document.getElementById('aibt').value);
+  var sobtV=toMins(document.getElementById('sobt').value), aobtV=toMins(document.getElementById('aobt').value);
   var mtt=parseInt(mttEl.value);
-  if([sibtV,aibtV,sobtV,aobtV].indexOf(null)!==-1||isNaN(mtt)||mtt<1){errEl.textContent='Please fill in all four times (HH:MM) and a turnaround time.';errEl.style.display='block';return;}
-  var sobt=sobtV,aobt=resolve(aobtV,sobt),sibt=resolve(sibtV,sobt-mtt),aibt=resolve(aibtV,sibt);
-  var totalDelay=aobt-sobt,earliestPush=aibt+mtt,code93=Math.max(0,earliestPush-sobt),remaining=Math.max(0,totalDelay-code93);
+  if ([sibtV,aibtV,sobtV,aobtV].indexOf(null) !== -1 || isNaN(mtt) || mtt < 1) {
+    errEl.textContent='Please fill in all four times (HH:MM) and a turnaround time.'; errEl.style.display='block'; return;
+  }
+  var sobt=sobtV, aobt=resolve(aobtV,sobt), sibt=resolve(sibtV,sobt-mtt), aibt=resolve(aibtV,sibt);
+  var totalDelay=aobt-sobt, earliestPush=aibt+mtt, code93=Math.max(0,earliestPush-sobt), remaining=Math.max(0,totalDelay-code93);
   var html='';
-  if(totalDelay<=0){html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value ontime">On time</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &middot; AOBT '+fmtT(aobt)+'</div></div>';}
-  else{
+  if (totalDelay <= 0) {
+    html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value ontime">On time</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &middot; AOBT '+fmtT(aobt)+'</div></div>';
+  } else {
     html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value delay">'+fmt(totalDelay)+'</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &rarr; AOBT '+fmtT(aobt)+'</div></div><div class="result-section">Breakdown</div>';
     html+=code93>0?'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-yes">YES</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(earliestPush)+'<br>'+fmt(code93)+' past SOBT '+fmtT(sobt)+'</div></div><div class="result-row-value accent">'+fmt(code93)+'</div></div>':'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-no">NO</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(earliestPush)+'<br>did not push past SOBT '+fmtT(sobt)+'</div></div><div class="result-row-value success">0 min</div></div>';
     html+=remaining>0?'<div class="result-row"><div><div class="result-row-title">Remaining delay</div><div class="result-row-note">Assign your own delay code</div></div><div class="result-row-value danger">'+fmt(remaining)+'</div></div>':'<div class="result-row"><div><div class="result-row-title">Remaining delay</div><div class="result-row-note">Fully covered by code 93</div></div><div class="result-row-value success">0 min</div></div>';
   }
-  resEl.innerHTML=html;resEl.style.display='block';clrBtn.style.display='block';
-  setTimeout(function(){resEl.scrollIntoView({behavior:'smooth',block:'nearest'});},40);
+  resEl.innerHTML=html; resEl.style.display='block'; clrBtn.style.display='block';
+  setTimeout(function(){ resEl.scrollIntoView({behavior:'smooth',block:'nearest'}); }, 40);
 }
-function clearDelay(){['sibt','aibt','sobt','aobt','mtt'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('error').style.display='none';document.getElementById('result').style.display='none';document.getElementById('clear-btn').style.display='none';}
+function clearDelay() {
+  ['sibt','aibt','sobt','aobt','mtt'].forEach(function(id){ document.getElementById(id).value=''; });
+  document.getElementById('error').style.display='none';
+  document.getElementById('result').style.display='none';
+  document.getElementById('clear-btn').style.display='none';
+}
 
-var PAIRS={'deboard-start':{pair:'deboard-end',group:'deboarding'},'deboard-end':{pair:'deboard-start',group:'deboarding'},'fuel-start':{pair:'fuel-end',group:'fueling'},'fuel-end':{pair:'fuel-start',group:'fueling'},'clean-start':{pair:'clean-end',group:'cleaning'},'clean-end':{pair:'clean-start',group:'cleaning'},'pax-first':{pair:'pax-last',group:'boarding'},'pax-last':{pair:'pax-first',group:'boarding'}};
-var LABELS={'deboard-start':'Deboarding Started','deboard-end':'Deboarding Ended','fuel-start':'Fueling Started','fuel-end':'Fueling Ended','clean-start':'Cleaning Started','clean-end':'Cleaning Ended','pax-first':'First Pax In','pax-last':'Last Pax In'};
-var STORAGE_KEY='delay-calc-timestamps';
-function loadStamps(){try{return JSON.parse(sessionStorage.getItem(STORAGE_KEY))||{};}catch(e){return {};}}
-function saveStamps(d){try{sessionStorage.setItem(STORAGE_KEY,JSON.stringify(d));}catch(e){}}
-function nowStr(){var d=new Date();return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
-function renderAll(){var data=loadStamps();Object.keys(PAIRS).forEach(function(id){renderOne(id,data[id]||null);});['deboarding','fueling','cleaning','boarding'].forEach(function(g){updateDuration(g);});}
-function renderOne(id,timeStr){var btn=document.getElementById('btn-'+id),timeEl=document.getElementById('time-'+id),hintEl=document.getElementById('hint-'+id);if(timeStr){timeEl.textContent=timeStr;timeEl.classList.add('visible');hintEl.classList.add('visible');btn.classList.add('stamped');}else{timeEl.textContent='';timeEl.classList.remove('visible');hintEl.classList.remove('visible');btn.classList.remove('stamped');}}
-function updateDuration(group){var keys=Object.keys(PAIRS).filter(function(k){return PAIRS[k].group===group;});var data=loadStamps(),t0=data[keys[0]],t1=data[keys[1]];var footerEl=document.getElementById('dur-'+group),textEl=document.getElementById('dur-text-'+group);if(t0&&t1){var m0=toMins(t0),m1=toMins(t1);if(m0!==null&&m1!==null){var diff=m1>=m0?m1-m0:1440-(m0-m1);textEl.textContent=group.charAt(0).toUpperCase()+group.slice(1)+' took '+diff+' min';footerEl.classList.add('visible');return;}}if(footerEl)footerEl.classList.remove('visible');}
-function handlePress(id){var data=loadStamps();if(data[id]){openModal(id);}else{data[id]=nowStr();saveStamps(data);renderOne(id,data[id]);updateDuration(PAIRS[id].group);}}
-function clearStamp(id){var data=loadStamps();delete data[id];saveStamps(data);renderOne(id,null);updateDuration(PAIRS[id].group);}
-function clearAllStamps(){try{sessionStorage.removeItem(STORAGE_KEY);}catch(e){}renderAll();}
+/* ── Timestamps ── */
+var PAIRS = {
+  'deboard-start':{pair:'deboard-end',group:'deboarding'},'deboard-end':{pair:'deboard-start',group:'deboarding'},
+  'fuel-start':{pair:'fuel-end',group:'fueling'},'fuel-end':{pair:'fuel-start',group:'fueling'},
+  'clean-start':{pair:'clean-end',group:'cleaning'},'clean-end':{pair:'clean-start',group:'cleaning'},
+  'pax-first':{pair:'pax-last',group:'boarding'},'pax-last':{pair:'pax-first',group:'boarding'}
+};
+var LABELS = {
+  'deboard-start':'Deboarding Started','deboard-end':'Deboarding Ended',
+  'fuel-start':'Fueling Started','fuel-end':'Fueling Ended',
+  'clean-start':'Cleaning Started','clean-end':'Cleaning Ended',
+  'pax-first':'First Pax In','pax-last':'Last Pax In'
+};
+var STORAGE_KEY = 'tcobuddy-timestamps';
+function loadStamps() { try { return JSON.parse(sessionStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; } }
+function saveStamps(d) { try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify(d)); } catch(e) {} }
+function nowStr() { var d=new Date(); return String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0'); }
+function renderAll() {
+  var data = loadStamps();
+  Object.keys(PAIRS).forEach(function(id) { renderOne(id, data[id] || null); });
+  ['deboarding','fueling','cleaning','boarding'].forEach(function(g) { updateDuration(g); });
+}
+function renderOne(id, timeStr) {
+  var btn=document.getElementById('btn-'+id), timeEl=document.getElementById('time-'+id), hintEl=document.getElementById('hint-'+id);
+  if (timeStr) { timeEl.textContent=timeStr; timeEl.classList.add('visible'); hintEl.classList.add('visible'); btn.classList.add('stamped'); }
+  else { timeEl.textContent=''; timeEl.classList.remove('visible'); hintEl.classList.remove('visible'); btn.classList.remove('stamped'); }
+}
+function updateDuration(group) {
+  var keys=Object.keys(PAIRS).filter(function(k){return PAIRS[k].group===group;});
+  var data=loadStamps(), t0=data[keys[0]], t1=data[keys[1]];
+  var footerEl=document.getElementById('dur-'+group), textEl=document.getElementById('dur-text-'+group);
+  if (t0 && t1) {
+    var m0=toMins(t0), m1=toMins(t1);
+    if (m0!==null && m1!==null) {
+      var diff=m1>=m0?m1-m0:1440-(m0-m1);
+      textEl.textContent=group.charAt(0).toUpperCase()+group.slice(1)+' took '+diff+' min';
+      footerEl.classList.add('visible'); return;
+    }
+  }
+  if (footerEl) footerEl.classList.remove('visible');
+}
+function handlePress(id) {
+  var data=loadStamps();
+  if (data[id]) { openModal(id); }
+  else { data[id]=nowStr(); saveStamps(data); renderOne(id,data[id]); updateDuration(PAIRS[id].group); }
+}
+function clearStamp(id) { var data=loadStamps(); delete data[id]; saveStamps(data); renderOne(id,null); updateDuration(PAIRS[id].group); }
+function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catch(e) {} renderAll(); }
 
-var _modalId=null;
-var modalInput=document.getElementById('modal-input');
-var modalOverlay=document.getElementById('modal-overlay');
-var modalError=document.getElementById('modal-error');
-modalInput.addEventListener('input',function(){var v=this.value.replace(/\D/g,'');if(v.length>=3)v=v.slice(0,2)+':'+v.slice(2,4);this.value=v;modalError.style.display='none';});
-modalInput.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();saveModal();}if(e.key==='Escape'){e.preventDefault();closeModal();}});
-function openModal(id){_modalId=id;var data=loadStamps();document.getElementById('modal-title').textContent='Edit - '+LABELS[id];modalInput.value=data[id]||'';modalError.style.display='none';modalOverlay.classList.add('open');setTimeout(function(){modalInput.focus();modalInput.select();},120);}
-function closeModal(){modalOverlay.classList.remove('open');_modalId=null;}
-function saveModal(){var val=modalInput.value.trim();if(toMins(val)===null){modalError.style.display='block';return;}var data=loadStamps();data[_modalId]=val;saveStamps(data);renderOne(_modalId,val);updateDuration(PAIRS[_modalId].group);closeModal();}
-function handleOverlayClick(e){if(e.target===modalOverlay)closeModal();}
+/* ── Modal ── */
+var _modalId = null;
+var modalInput = document.getElementById('modal-input');
+var modalOverlay = document.getElementById('modal-overlay');
+var modalError = document.getElementById('modal-error');
+modalInput.addEventListener('input', function() { var v=this.value.replace(/\D/g,''); if(v.length>=3)v=v.slice(0,2)+':'+v.slice(2,4); this.value=v; modalError.style.display='none'; });
+modalInput.addEventListener('keydown', function(e) { if(e.key==='Enter'){e.preventDefault();saveModal();} if(e.key==='Escape'){e.preventDefault();closeModal();} });
+function openModal(id) { _modalId=id; var data=loadStamps(); document.getElementById('modal-title').textContent='Edit - '+LABELS[id]; modalInput.value=data[id]||''; modalError.style.display='none'; modalOverlay.classList.add('open'); setTimeout(function(){modalInput.focus();modalInput.select();},120); }
+function closeModal() { modalOverlay.classList.remove('open'); _modalId=null; }
+function saveModal() { var val=modalInput.value.trim(); if(toMins(val)===null){modalError.style.display='block';return;} var data=loadStamps(); data[_modalId]=val; saveStamps(data); renderOne(_modalId,val); updateDuration(PAIRS[_modalId].group); closeModal(); }
+function handleOverlayClick(e) { if(e.target===modalOverlay)closeModal(); }
 
 renderAll();
 </script>
