@@ -597,15 +597,13 @@ function clearAllStamps() { try { sessionStorage.removeItem(STORAGE_KEY); } catc
   } catch(e) {}
 })();
 
-(function() {
-  try {
-    if (localStorage.getItem('tco-skip-welcome') === '1') {
-      document.getElementById('welcome-overlay').classList.add('hidden');
-    }
-  } catch(e) {}
-})();
+renderAll();
 
-renderAll(); }
+try {
+  if (localStorage.getItem('tco-skip-welcome') === '1') {
+    document.getElementById('welcome-overlay').classList.add('hidden');
+  }
+} catch(e) {} }
 
 /* ── Modal ── */
 var _modalId = null;
