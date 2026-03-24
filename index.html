@@ -521,13 +521,15 @@ function calculate() {
     errEl.textContent='Please fill in all four times (HH:MM) and a turnaround time.'; errEl.style.display='block'; return;
   }
   var sobt=sobtV, aobt=resolve(aobtV,sobt), sibt=resolve(sibtV,sobt-mtt), aibt=resolve(aibtV,sibt);
-  var totalDelay=aobt-sobt, earliestPush=aibt+mtt, code93=Math.max(0,earliestPush-sobt), remaining=Math.max(0,totalDelay-code93);
+  var totalDelay=aobt-sobt, pushDeadline=aibt+mtt;
+  var code93 = totalDelay > 0 && aobt <= pushDeadline ? totalDelay : Math.max(0, pushDeadline-sobt);
+  var remaining = Math.max(0, totalDelay-code93);
   var html='';
   if (totalDelay <= 0) {
     html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value ontime">On time</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &middot; AOBT '+fmtT(aobt)+'</div></div>';
   } else {
     html='<div class="result-hero"><div class="result-hero-label">Total delay</div><div class="result-hero-value delay">'+fmt(totalDelay)+'</div><div class="result-hero-sub">SOBT '+fmtT(sobt)+' &rarr; AOBT '+fmtT(aobt)+'</div></div><div class="result-section">Breakdown</div>';
-    html+=code93>0?'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-yes">YES</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(earliestPush)+'<br>'+fmt(code93)+' past SOBT '+fmtT(sobt)+'</div></div><div class="result-row-value accent">'+fmt(code93)+'</div></div>':'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-no">NO</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(earliestPush)+'<br>did not push past SOBT '+fmtT(sobt)+'</div></div><div class="result-row-value success">0 min</div></div>';
+    html+=code93>0?'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-yes">YES</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(pushDeadline)+'<br>'+fmt(code93)+' covered by late arrival</div></div><div class="result-row-value accent">'+fmt(code93)+'</div></div>':'<div class="result-row"><div><div class="result-row-title">Code 93 <span class="badge badge-no">NO</span></div><div class="result-row-note">AIBT '+fmtT(aibt)+' + '+mtt+' min = '+fmtT(pushDeadline)+'<br>aircraft pushed before push deadline</div></div><div class="result-row-value success">0 min</div></div>';
     html+=remaining>0?'<div class="result-row"><div><div class="result-row-title">Remaining delay</div><div class="result-row-note">Assign your own delay code</div></div><div class="result-row-value danger">'+fmt(remaining)+'</div></div>':'<div class="result-row"><div><div class="result-row-title">Remaining delay</div><div class="result-row-note">Fully covered by code 93</div></div><div class="result-row-value success">0 min</div></div>';
   }
   resEl.innerHTML=html; resEl.style.display='block'; clrBtn.style.display='block';
